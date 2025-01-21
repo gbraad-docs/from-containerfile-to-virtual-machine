@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title></title>
+    <title>From `Containerfile` to (Virtual) Machine</title>
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/reveal.css" />
     <link rel="stylesheet" href="css/slides-extended.css" />
@@ -91,6 +91,11 @@
         <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
+This slide intentionally left blank
+<!-- .element: class="fragment fade-out" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
 # Bootable
 # Containers
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
@@ -114,7 +119,7 @@ Note
 
 All material, including source, presentation, build workflow, containers, disk images, etc. are published on
 
-https://github.com/gbraad-redhat/fedora-bootc-example
+[github.com/gbraad-redhat/fedora-bootc-example](https://github.com/gbraad-redhat/fedora-bootc-example)
 
 </div>
 </div>
@@ -126,10 +131,14 @@ https://github.com/gbraad-redhat/fedora-bootc-example
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ## From `Containerfile` 
-## to Virtual Machine
+## to (Virtual) Machine
 
-####  Gerard Braad <me@gbraad.nl>
+####  Gerard Braad, <a style="color: red; a:link">gbraad@redhat.com</a>
 <!-- .element: class="fragment fade-in" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# containers
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -139,22 +148,29 @@ https://github.com/gbraad-redhat/fedora-bootc-example
 
 ### describes content
 #### `FROM`
+<!-- .element: class="fragment fade-in" -->
 #### `RUN`, `USER`
+<!-- .element: class="fragment fade-in" -->
 #### `COPY`, `ADD`
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### what runs
 
 #### `CMD`
+<!-- .element: class="fragment fade-in" -->
 #### `ENTRYPOINT`
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### or describes runtime use
 
 #### `EXPOSE`
+<!-- .element: class="fragment fade-in" -->
 #### `VOLUME`
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -168,7 +184,7 @@ FROM quay.io/fedora/fedora
 
 RUN dnf install -y cowsay
 
-CMD [ "cowsay", "Hello" ]
+CMD [ "cowsay", "Moo" ]
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -184,9 +200,9 @@ $ podman run --rm cowsay
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ```text
-	 _______
-	< Hello >
-	 -------
+	 _____
+	< Moo >
+	 -----
 	        \   ^__^
 	         \  (oo)\_______
 	            (__)\       )\/\
@@ -226,7 +242,7 @@ $ podman build -t cowsay -f Containerfile .
 ```
 
 ```shell
-$ podman run --rm cowsay Hello
+$ podman run --rm cowsay Moo
 ```
 <!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
@@ -263,7 +279,7 @@ ENTRYPOINT [ "/sbin/init" ]
 $ podman run -d --name system system
 ```
 ```shell
-$ podman exec system cowsay Hello
+$ podman exec system cowsay Moo
 ```
 <!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
@@ -434,7 +450,6 @@ bash-5.2# uname -na
 ```shell
 Linux 52cae56640ff 5.15.167.4-microsoft-standard-WSL2
 ```
-<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -600,7 +615,9 @@ No rollback image present
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ## Forgot to include
+
 # `cowsay`
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -620,7 +637,7 @@ Transaction Summary:
 ```shell
 Running transction
 Transaction failed: Rpm transaction failed.
-  - installing package cowsay needs 376KB more space on the / filesystem
+  - installing cowsay needs 376KB more on the / filesystem
 ```
 <!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
@@ -637,19 +654,26 @@ Transaction failed: Rpm transaction failed.
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### `ostree`
+
 ### Version control system on an entire filesystem
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### `/etc`, `/var`
+
 ## to store configuration, state, ...
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-# Instead we 
+# Instead we
+
 # update the
 
+
 # `Containerfile`
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -753,8 +777,11 @@ Current staged image: ghcr.io/.../fedora-bootc:latest
     Image version: 41.2025019.0 (...)
     Image digest: sha256:990c...
 ...
+```
+```shell
 $ sudo reboot
 ```
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -763,14 +790,14 @@ $ sudo reboot
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ```shell
-$ cowsay Hello
+$ cowsay Moo
 ```
 
 
 ```text
-	 _______
-	< Hello >
-	 -------
+	 _____
+	< Moo >
+	 -----
 	        \   ^__^
 	         \  (oo)\_______
 	            (__)\       )\/\
@@ -781,6 +808,8 @@ $ cowsay Hello
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 # Rollback
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ```shell
 $ sudo bootc status
@@ -802,13 +831,38 @@ Current rollback image: ghcr.io/.../fedora-bootc:latest
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ```shell
-$ sudo bootc status
+$ podman images
+REPOSITORY                IMAGE ID      CREATED       SIZE
+```
+```shell
+ghcr.io/.../fedora        0fafe7a42ce5  3 hours ago   164 MB
+```
+<!-- .element: class="fragment fade-in" -->
+```shell
+ghcr.io/.../fedora-bootc  44b1d53d7593  2 hours ago   1.85 GB
+```
+<!-- .element: class="fragment fade-in" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```shell
+$ podman run -it --rm ghcr.io/.../fedora-bootc bash
+```
+```shell
+bash-5.2# sudo bootc status
+```
+```shell
 System is not deployed via bootc.
 ```
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 # Mutable
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Testable
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -818,13 +872,22 @@ System is not deployed via bootc.
     "name": "Fedora bootc example",
     "image": "ghcr.io/.../fedora-bootc:latest",
 
-    "runArgs": [  ],
+    "runArgs": [ ],
 
     "overrideCommand": false,
 	"privileged": true,
     "remoteUser": "admin"
 }
 ```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<!-- .slide: template="" -->
+
+# `Containerfile`
+
+## describes content
+<!-- .element: class="fragment fade-in" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -847,13 +910,31 @@ System is not deployed via bootc.
 
 # Resources
 
-- https://github.com/gbraad-redhat/fedora-bootc-example
-- https://github.com/gbraad-docs/presentation-podman-libvirt
+- [github.com/gbraad-redhat/fedora-bootc-example](https://github.com/gbraad-redhat/fedora-bootc-example)
+- [github.com/gbraad-docs/presentation-podman-libvirt](https://github.com/gbraad-docs/presentation-podman-libvirt)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-- https://containers.github.io/bootc/
-- https://osbuild.org/docs/bootc/
-- https://gitlab.com/fedora/bootc/examples
-- https://gitlab.com/fedora/bootc/base-images
+# Links
+
+- [containers.github.io/bootc/](https://containers.github.io/bootc/)
+- [osbuild.org/docs/bootc/](https://osbuild.org/docs/bootc/)
+- [gitlab.com/fedora/bootc/examples](https://gitlab.com/fedora/bootc/examples)
+- [gitlab.com/fedora/bootc/base-images](https://gitlab.com/fedora/bootc/base-images)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Questions
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Thank you
+<!-- .element: class="fragment fade-out" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" template="" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Gerard Braad
+## <a style="color: #FF8400">me</a>@<a style="color">gbraad</a>.nl
 </div></script></section></div>
     </div>
 
